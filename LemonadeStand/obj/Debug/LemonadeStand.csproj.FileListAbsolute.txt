@@ -1,1 +1,2 @@
 C:\Users\Zack\Desktop\C# (Sharp)\LemonadeStand\LemonadeStand\bin\Debug\LemonadeStand.exe.config
+C:\Users\Zack\Desktop\C# (Sharp)\LemonadeStand\ProjectLemonadeStandGame\LemonadeStand\bin\Debug\LemonadeStand.exe.config

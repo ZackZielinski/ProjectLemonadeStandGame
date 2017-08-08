@@ -9,10 +9,10 @@ namespace LemonadeStand
     class Player
     {
         public double Money = 20.00;
-        public double Lemon;
-        public double Sugar;
-        public double Ice;
-        public double CupsOfLemonade;
+        public double LemonInventory = 0;
+        public double SugarInventory = 0;
+        public double IceInventory = 0;
+        public double CupsInventory = 0;
         public string name; 
 
         public Player()
@@ -20,7 +20,7 @@ namespace LemonadeStand
             Console.WriteLine("Enter Player Name");
             name = Console.ReadLine();
         }
-        private void Rules()
+        public void Rules()
         {
             Console.WriteLine("Welcome to Lemonade Stand");
             Console.WriteLine("You will have 7 days to earn as much money from selling lemonade");

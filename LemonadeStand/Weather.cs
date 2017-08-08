@@ -8,19 +8,22 @@ namespace LemonadeStand
 {
     class Weather
     {
-        public string DayWeather;
+        public string WeatherCast;
+        public string TrueWeather;
+        Random weatherChoice = new Random();
+        List<string> Forecast = new List<string>() { "Sunny", "Cloudy", "Rainy", "Partly Cloudy" };
         public Weather()
         {
                 
         }
-        private void CurrentWeather()
+
+        public string ForecastWeather()
         {
-            List<string> Forecast = new List<string>() { "Sunny" , "Cloudy" , "Rainy" , "Partly Cloudy"};
-
-            Random weatherChoice =  new Random();
-
-            DayWeather = Forecast[weatherChoice.Next(1,Forecast.Count)];
+            return (WeatherCast = Forecast[weatherChoice.Next(1, Forecast.Count)]);
         }
-
+        public string ActualWeather()
+        {
+            return (TrueWeather = Forecast[weatherChoice.Next(1, Forecast.Count)]);
+        }
     }
 }
