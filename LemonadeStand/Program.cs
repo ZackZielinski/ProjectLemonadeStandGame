@@ -10,8 +10,8 @@ namespace LemonadeStand
     {
         static void Main(string[] args)
         {
-            Week newGame = new Week();
-            newGame.DaysOfTheWeek();
+            Game newGame = new Game();
+            newGame.StartGame();
         }
     }
 }

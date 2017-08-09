@@ -10,10 +10,14 @@ namespace LemonadeStand
     {
         public Game()
         {
-            Player StartGame = new Player();
-            StartGame.Rules();
+        }
+
+        public void StartGame()
+        {
+            Player playerOne = new Player();
+            playerOne.Rules();
             Week BeginWeek = new Week();
-            BeginWeek.DaysOfTheWeek();
+            BeginWeek.DaysOfTheWeek(playerOne);
         }
 
     }
