@@ -21,7 +21,7 @@ namespace LemonadeStand
 
         }
 
-        public void Purchase(string ForecastWeather)
+        private void Purchase(string ForecastWeather)
         {
            
             string DayWeather = ForecastWeather;
@@ -140,8 +140,9 @@ namespace LemonadeStand
             }
         }
 
-        public void StartTransactions(Player playerOne)
+        public void StartTransactions(string WeatherPredict, Player playerOne)
         {
+            Purchase(WeatherPredict);
             LemonPurchase(Product, playerOne);
             SugarPurchase(Product, playerOne);
             IcePurchase(Product, playerOne);

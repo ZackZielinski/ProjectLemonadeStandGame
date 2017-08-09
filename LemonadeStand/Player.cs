@@ -13,6 +13,8 @@ namespace LemonadeStand
         public double SugarInventory = 0;
         public double IceInventory = 0;
         public double CupInventory = 0;
+        public double CupsOfLemonade = 0;
+        public double Profit;
         public string name; 
 
         public Player()

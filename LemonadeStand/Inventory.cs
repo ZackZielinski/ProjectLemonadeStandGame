@@ -63,6 +63,12 @@ namespace LemonadeStand
                 AmountOfIce();
             }
         }
+
+        private void LemonadeCups()
+        {
+            List<int> LemonadePitcher = new List<int>();
+        }
+
         public void MakeLemonade()
         {
             AmountOfLemons();

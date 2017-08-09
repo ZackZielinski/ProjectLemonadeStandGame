@@ -15,9 +15,7 @@ namespace LemonadeStand
         public void DaysOfTheWeek(Player playerOne) {
 
             int Days = 1;
-
-           
-       
+                              
             while (Days <= 7)
             {
                 Console.WriteLine($"Day: {Days}, Cash: {playerOne.Money}, Lemons: {playerOne.LemonInventory}, Sugar: {playerOne.SugarInventory}, Ice: {playerOne.IceInventory}, Cups: {playerOne.CupInventory}");
@@ -26,12 +24,10 @@ namespace LemonadeStand
                 string TrueWeather = newDay.ActualWeather();
 
                 Store Supplies = new Store();
-                Supplies.Purchase(WeatherPredict);
-                Supplies.StartTransactions(playerOne);
+                Supplies.StartTransactions(WeatherPredict, playerOne);
 
-                CustomerSatisfaction People = new CustomerSatisfaction();
-                People.Satisfactory(TrueWeather, playerOne);
-                
+                Customers People = new Customers();
+                People.StartCustomers(TrueWeather);
             }
 
         }
