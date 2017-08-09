@@ -8,14 +8,24 @@ namespace LemonadeStand
 {
     class Player
     {
-        public double Money = 20.00;
-        public double LemonInventory = 0;
-        public double SugarInventory = 0;
-        public double IceInventory = 0;
-        public double CupInventory = 0;
-        public double CupsOfLemonade = 0;
-        public double Profit;
-        public string name; 
+        double money = 20.00;
+        double lemoninventory = 0;
+        double sugarinventory = 0;
+        double iceinventory = 0;
+        double cupinventory = 0;
+        double profit;
+        string name;
+        public double Money { get { return money; } set { money = value; } }
+
+        public double LemonInventory { get { return lemoninventory; } set { lemoninventory = value; } }
+
+        public double SugarInventory { get { return sugarinventory; } set { sugarinventory = value; } }
+
+        public double IceInventory { get { return iceinventory; } set { iceinventory = value; } }
+
+        public double CupInventory { get { return cupinventory; } set { cupinventory = value; } }
+
+        public double Profit { get { return profit; } set { profit = value; } }
 
         public Player()
         {

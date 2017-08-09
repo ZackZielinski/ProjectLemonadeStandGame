@@ -73,6 +73,12 @@ namespace LemonadeStand
             }
             return Satisfied;
         }
+
+        private void CustomersBuying()
+        {
+            
+        }
+
         private void CheckforCustomers()
         {
             CustomersOfTheDay = ListOfCustomers();
