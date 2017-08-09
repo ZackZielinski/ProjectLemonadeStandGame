@@ -13,7 +13,7 @@ namespace LemonadeStand
         double sugarinventory = 0;
         double iceinventory = 0;
         double cupinventory = 0;
-        double profit;
+        double lemonadeprice;
         string name;
         public double Money { get { return money; } set { money = value; } }
 
@@ -25,7 +25,7 @@ namespace LemonadeStand
 
         public double CupInventory { get { return cupinventory; } set { cupinventory = value; } }
 
-        public double Profit { get { return profit; } set { profit = value; } }
+        public double LemonadePrice { get { return lemonadeprice; } set { lemonadeprice = value; } }
 
         public Player()
         {

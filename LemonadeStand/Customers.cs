@@ -30,23 +30,6 @@ namespace LemonadeStand
             return CustomerList;
         }
 
-        private void ToPurchaseOrNot(List<int> CustomersOfTheDay)
-        {
-            int PurchaseChoice;
-
-            for (int x = 1; x <= CustomersOfTheDay.Count; x++)
-            {
-                PurchaseChoice = rnd.Next();
-                if (PurchaseChoice % 2 != 0)
-                {
-                    CustomersOfTheDay.Remove(x);
-                }
-                else
-                {
-                    //go to satisfed
-                }
-            }
-        }
         private int SatisfactoryFromWeather(string TrueWeather)
         {
             int Satisfied = rnd.Next(5);
@@ -74,29 +57,26 @@ namespace LemonadeStand
             return Satisfied;
         }
 
-        private void CustomersBuying()
-        {
-            
-        }
 
         private void CheckforCustomers()
         {
             CustomersOfTheDay = ListOfCustomers();
-            int NumberOfCustomer = CustomersOfTheDay.Count;
+            int NumberOfCustomers = CustomersOfTheDay.Count;
                 
-           if (NumberOfCustomer == 0)
+           if (NumberOfCustomers == 0)
             {
                 Console.WriteLine("You didn't have any customers today.");
             }
            else
             {
-                ToPurchaseOrNot(CustomersOfTheDay);
+                Console.WriteLine($"You have {NumberOfCustomers} today.");
             }
         }
 
         public void StartCustomers(string TrueWeather)
         {
-
+            SatisfactoryFromWeather(TrueWeather);
+            CheckforCustomers();
         }
      }
 }

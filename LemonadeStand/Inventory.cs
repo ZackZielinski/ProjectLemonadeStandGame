@@ -84,16 +84,19 @@ namespace LemonadeStand
         private void CostOfLemonade()
         {
             Console.WriteLine("How much are you selling your lemonade per cup?");
-            Profit = double.Parse(Console.ReadLine());
-            if (Profit >= 25.00)
+            LemonadePrice = double.Parse(Console.ReadLine());
+            if (LemonadePrice >= 5.01)
             {
                 Console.WriteLine("I think that's too much for lemonade, try a smaller number");
                 CostOfLemonade();
             }
-            else if (Profit <= 00.00)
+            else if (LemonadePrice <= 0.00)
             {
                 Console.WriteLine("You have to make some profit at least. Please try again.");
                 CostOfLemonade();
+            }
+            else
+            {
             }
         }
 
