@@ -12,29 +12,32 @@ namespace LemonadeStand
         public Week()
         {
         }
-        public void DaysOfTheWeek(Player playerOne) {
-
+        public void DaysOfTheWeek(Player playerOne)
+        {
+            Weather newDay = new Weather();
+            Store Supplies = new Store();
+            Customers People = new Customers();
+            ProfitMargins Transactions = new ProfitMargins();
             int Days = 1;
 
-            Inventory FreshStart = new Inventory();                
-              
-            while (Days <= 7)
+                                         
+            while (Days < 8)
             {
-                Console.WriteLine($"Day: {Days}, Cash: {playerOne.Money}, Lemons: {playerOne.LemonInventory}, Sugar: {playerOne.SugarInventory}, Ice: {playerOne.IceInventory}, Cups: {playerOne.CupInventory}");
+                Console.WriteLine($"Day: {Days}, Cash: {playerOne.Money}, Lemons: {playerOne.backpack.LemonInventory}, Sugar: {playerOne.backpack.SugarInventory}, Ice: {playerOne.backpack.IceInventory}, Cups: {playerOne.backpack.CupInventory}");
 
-                Weather newDay = new Weather();
-                string WeatherPredict = newDay.ForecastWeather();
-                string TrueWeather = newDay.ActualWeather();
+                
+                string WeatherPredict = newDay.WeatherChange();
+                string TrueWeather = newDay.WeatherChange();
 
-                Store Supplies = new Store();
-                Supplies.StartTransactions(WeatherPredict, playerOne);
+                
+                Supplies.StartTransactions(WeatherPredict, playerOne.backpack, playerOne);
 
-                FreshStart.MakeLemonade();
+                playerOne.backpack.MakeLemonade();
 
-                Customers People = new Customers();
+                
                 People.StartCustomers();
 
-                ProfitMargins Transactions = new ProfitMargins();
+                
                 Transactions.CalculateProfit(playerOne, People, TrueWeather);
             }
 

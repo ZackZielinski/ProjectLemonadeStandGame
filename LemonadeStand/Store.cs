@@ -23,130 +23,156 @@ namespace LemonadeStand
 
         private void Purchase(string ForecastWeather)
         {
-           
+            Console.WriteLine("You will need to go to the store to supply yourself for lemonade.");
+            Console.ReadKey();
+
+            Console.WriteLine($"\nThe prices are: \nLemons: ${LemonPrice} \nSugar: ${SugarPrice} \nIce: ${IcePrice} \nCups: ${CupPrice}");
+            Console.ReadKey();
+
             string DayWeather = ForecastWeather;
            
             switch (DayWeather)
             {
-                case "Partly Cloudy":
-                    Console.WriteLine($"The forecast is {DayWeather}, so the store didn't have to change the price.");
-                    break;
-
+                
                 case "Rainy":
-                    Console.WriteLine($"The forecast is {DayWeather}, prices have been cut in half.");
-                    for (int x = 0; x <= Product.Count; x++)
+                    Console.WriteLine($"\nThe Forecast is {DayWeather}, prices have been cut in half.");
+                    for (int x = 0; x < Product.Count; x++)
                     {
-                        Product[x] *= .5;
+                        Product[x] *= 0.5;
                     }
                     break;
 
                 case "Sunny":
-                    Console.WriteLine($"The forecast is {DayWeather}, prices have been doubled.");
-                    for (int x = 0; x <= Product.Count; x++)
+                    Console.WriteLine($"\nThe Forecast is {DayWeather}, prices have been doubled.");
+                    for (int x = 0; x < Product.Count; x++)
                     {
                         Product[x] *= 2;
                     }
                     break;
 
                 case "Cloudy":
-                    Console.WriteLine($"The forecast is {DayWeather}, so the store has dropped 1/4 the prices.");
-                    for (int x = 0; x <= Product.Count; x++)
+                    Console.WriteLine($"\nThe Forecast is {DayWeather}, so the store has dropped 1/4 the prices.");
+                    for (int x = 0; x < Product.Count; x++)
                     {
-                        Product[x] *= .25;
+                        Product[x] *= 0.25;
                     }
                     break;
+                default:
+                    Console.WriteLine($"\nThe Forecast is {DayWeather}, so the store didn't have to change the price.");
+                    break;
             }
+            Console.ReadKey();
         }
             
-            private void LemonPurchase(List<double>Product, Player player){
+            private void LemonPurchase(List<double>Product, Inventory backpack, Player player){
             
             int BuyLemons;
             
-            Console.WriteLine($"The price of lemons are {Product[1]} per unit. How many do you wish to purchase?");
+            Console.WriteLine($"\nThe price of lemons are ${Product[0]} per unit. How many do you wish to purchase?");
             BuyLemons = int.Parse(Console.ReadLine());
 
-            if (player.Money - (Product[1] * BuyLemons) >=0)
+            if (player.Money - (Product[0] * BuyLemons) >=0)
             {
-                player.SugarInventory += (player.SugarInventory + BuyLemons);
-                player.Money = (player.Money - (Product[1] * BuyLemons));
+                backpack.LemonInventory += (backpack.LemonInventory + BuyLemons);
+                player.Money = Math.Round((player.Money - (Product[0] * BuyLemons)), 2);
                 Console.WriteLine($"You currently have ${player.Money}");
             }
-            else if ((player.Money - (Product[1] * BuyLemons)) <= 0)
+            else if ((player.Money - (Product[0] * BuyLemons)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller number.");
-                LemonPurchase(Product, player);
+                LemonPurchase(Product, backpack, player);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                LemonPurchase(Product, backpack, player);
             }
         }
 
-        private void SugarPurchase(List<double> Product, Player player)
+        private void SugarPurchase(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuySugar;
 
-            Console.WriteLine($"The price of lemons are {Product[2]} per unit. How many do you wish to purchase?");
+            Console.WriteLine($"\nThe price of sugar is ${Math.Round(Product[1],2)} per unit. How many do you wish to purchase?");
             BuySugar = int.Parse(Console.ReadLine());
 
-            if (player.Money - (Product[2] * BuySugar) >= 0)
+            if (player.Money - (Product[1] * BuySugar) >= 0)
             {
-                player.SugarInventory += (player.SugarInventory + BuySugar);
-                player.Money = (player.Money - (Product[1] * BuySugar));
+                backpack.SugarInventory += (backpack.SugarInventory + BuySugar);
+                player.Money = Math.Round((player.Money - (Product[1] * BuySugar)), 2);
                 Console.WriteLine($"You currently have ${player.Money}");
             }
-            else if ((player.Money - (Product[2] * BuySugar)) <= 0)
+            else if ((player.Money - (Product[1] * BuySugar)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                SugarPurchase(Product, player);
+                SugarPurchase(Product, backpack, player);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                SugarPurchase(Product, backpack, player);
             }
         }
 
-        private void IcePurchase(List<double> Product, Player player)
+        private void IcePurchase(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuyIce;
 
-            Console.WriteLine($"The price of cups are {Product[3]} per unit. How many do you wish to purchase?");
+            Console.WriteLine($"\nThe price of Ice are ${Product[2]} per unit. How many do you wish to purchase?");
             BuyIce = int.Parse(Console.ReadLine());
 
-            if (player.Money - (Product[3] * BuyIce) >= 0)
+            if (player.Money - (Product[2] * BuyIce) >= 0)
             {
-                player.IceInventory += (player.IceInventory + BuyIce);
-                player.Money = (player.Money - (Product[3] * BuyIce));
+                backpack.IceInventory += (backpack.IceInventory + BuyIce);
+                player.Money = Math.Round((player.Money - (Product[2] * BuyIce)),2);
                 Console.WriteLine($"You currently have ${player.Money}");
             }
-            else if ((player.Money - (Product[3] * BuyIce)) <= 0)
+            else if ((player.Money - (Product[2] * BuyIce)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                IcePurchase(Product, player);
+                IcePurchase(Product, backpack, player);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                IcePurchase(Product, backpack, player);
             }
         }
-        private void CupPurchase(List<double> Product, Player player)
+        private void CupPurchase(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuyCups;
 
-            Console.WriteLine($"The price of cups are {Product[4]} per unit. How many do you wish to purchase?");
+            Console.WriteLine($"\nThe price of cups are ${Product[3]} per unit. How many do you wish to purchase?");
             BuyCups = int.Parse(Console.ReadLine());
 
-            if (player.Money - (Product[4] * BuyCups) >= 0)
+            if (player.Money - (Product[3] * BuyCups) >= 0)
             {
-                player.CupInventory += (player.CupInventory + BuyCups);
-                player.Money = (player.Money - (Product[4] * BuyCups));
+                backpack.CupInventory += (backpack.CupInventory + BuyCups);
+                player.Money = Math.Round((player.Money - (Product[3] * BuyCups)),2);
                 Console.WriteLine($"You currently have ${player.Money}");
             }
-            else if ((player.Money - (Product[4] * BuyCups)) <= 0)
+            else if ((player.Money - (Product[3] * BuyCups)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                CupPurchase(Product, player);
+                CupPurchase(Product, backpack, player);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                CupPurchase(Product, backpack, player);
             }
         }
 
-        public void StartTransactions(string WeatherPredict, Player playerOne)
+        public void StartTransactions(string WeatherPredict, Inventory backpack, Player playerOne)
         {
             Purchase(WeatherPredict);
-            LemonPurchase(Product, playerOne);
-            SugarPurchase(Product, playerOne);
-            IcePurchase(Product, playerOne);
-            CupPurchase(Product, playerOne);
+            LemonPurchase(Product, backpack, playerOne);
+            SugarPurchase(Product, backpack, playerOne);
+            IcePurchase(Product, backpack, playerOne);
+            CupPurchase(Product, backpack, playerOne);
         }
 
     }

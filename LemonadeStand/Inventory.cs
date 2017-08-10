@@ -8,9 +8,22 @@ namespace LemonadeStand
 {
     class Inventory : Player
     {
+        double lemoninventory;
+        double sugarinventory;
+        double iceinventory;
+        double cupinventory;
+
+        public double LemonInventory { get { return lemoninventory; } set { lemoninventory = value; } }
+
+        public double SugarInventory { get { return sugarinventory; } set { sugarinventory = value; } }
+
+        public double IceInventory { get { return iceinventory; } set { iceinventory = value; } }
+
+        public double CupInventory { get { return cupinventory; } set { cupinventory = value; } }
+
         public Inventory()
         {
-            Console.WriteLine("Now you need to make the lemonade.");
+            
         }
 
         private void AmountOfLemons(){
@@ -18,7 +31,7 @@ namespace LemonadeStand
             Console.WriteLine("How many Lemons are you going to use today?");
             int LemonsUsed = int.Parse(Console.ReadLine());
 
-            if (LemonsUsed <= SugarInventory)
+            if (LemonsUsed <= LemonInventory)
             {
                 LemonInventory -= LemonsUsed;
                 Console.WriteLine($"You have {LemonInventory} units of Lemons left.");
@@ -27,8 +40,12 @@ namespace LemonadeStand
                 Console.WriteLine($"You only have {LemonInventory} units of Lemons. Please try again.");
                 AmountOfLemons();
             }
-
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                AmountOfLemons();
             }
+        }
         private void AmountOfSugar()
         {
 
@@ -45,6 +62,11 @@ namespace LemonadeStand
                 Console.WriteLine($"You only have {SugarInventory} units of Sugar. Please try again.");
                 AmountOfSugar();
             }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                AmountOfSugar();
+            }
         }
         private void AmountOfIce()
         {
@@ -52,7 +74,7 @@ namespace LemonadeStand
             Console.WriteLine("How much Ice are you going to use today?");
             int IceUsed = int.Parse(Console.ReadLine());
 
-            if (IceUsed <= SugarInventory)
+            if (IceUsed <= IceInventory)
             {
                 IceInventory -= IceUsed;
                 Console.WriteLine($"You have {IceInventory} units of Ice left.");
@@ -60,6 +82,11 @@ namespace LemonadeStand
             else if (IceUsed > IceInventory)
             {
                 Console.WriteLine($"You only have {IceInventory} units of Ice. Please try again.");
+                AmountOfIce();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
                 AmountOfIce();
             }
         }
@@ -77,7 +104,12 @@ namespace LemonadeStand
             else if (CupsUsed > CupInventory)
             {
                 Console.WriteLine($"You only have {CupInventory} Cups. Please try again.");
-                AmountOfIce();
+                AmountOfCups();
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please try again.");
+                AmountOfCups();
             }
         }
 
@@ -97,11 +129,14 @@ namespace LemonadeStand
             }
             else
             {
+                Console.WriteLine("Invalid Input. Please try again.");
+                CostOfLemonade();
             }
         }
 
         public void MakeLemonade()
         {
+            Console.WriteLine("Now you need to make the lemonade.");
             AmountOfLemons();
             AmountOfSugar();
             AmountOfIce();

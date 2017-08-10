@@ -8,15 +8,18 @@ namespace LemonadeStand
 {
     class Game
     {
+        Player playerOne;
+        Week BeginWeek;
         public Game()
         {
         }
 
         public void StartGame()
         {
-            Player playerOne = new Player();
-            playerOne.Rules();
-            Week BeginWeek = new Week();
+            playerOne = new Player();
+            playerOne.StartingNewGame();
+
+            BeginWeek = new Week();
             BeginWeek.DaysOfTheWeek(playerOne);
         }
 

@@ -8,39 +8,44 @@ namespace LemonadeStand
 {
     class Player
     {
+        public Inventory backpack = new Inventory();
         double money = 20.00;
-        double lemoninventory = 0;
-        double sugarinventory = 0;
-        double iceinventory = 0;
-        double cupinventory = 0;
         double lemonadeprice;
         double profit;
         string name;
         public double Money { get { return money; } set { money = value; } }
 
-        public double LemonInventory { get { return lemoninventory; } set { lemoninventory = value; } }
-
-        public double SugarInventory { get { return sugarinventory; } set { sugarinventory = value; } }
-
-        public double IceInventory { get { return iceinventory; } set { iceinventory = value; } }
-
-        public double CupInventory { get { return cupinventory; } set { cupinventory = value; } }
-
         public double LemonadePrice { get { return lemonadeprice; } set { lemonadeprice = value; } }
 
         public double Profit { get { return profit; } set { profit = value; } }
 
+        public string Name { get { return name; } set { name = value; } }
 
         public Player()
         {
-            Console.WriteLine("Enter Player Name");
-            name = Console.ReadLine();
         }
-        public void Rules()
+        private void PlayerName()
+        {
+            Console.WriteLine("Enter Player Name");
+            Name = Console.ReadLine();
+            if (Name == "")
+            {
+                Console.WriteLine("Sorry, you need to enter in a name to continue.");
+                PlayerName();
+            }
+        }
+        private void Rules()
         {
             Console.WriteLine("Welcome to Lemonade Stand");
             Console.WriteLine("You will have 7 days to earn as much money from selling lemonade");
             Console.WriteLine($"You will need to supply yourself, so we will start you off with ${Money}");
         }
+
+        public void StartingNewGame()
+        {
+            Rules();
+            PlayerName();
+        }
+
     }
 }

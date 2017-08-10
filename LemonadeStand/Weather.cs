@@ -8,8 +8,11 @@ namespace LemonadeStand
 {
     class Weather
     {
-        public string WeatherCast;
-        public string TrueWeather;
+        string weathercast;
+        string trueweather;
+        public string WeatherCast { get { return weathercast; } set { weathercast = value; } }
+        public string TrueWeather { get { return trueweather; } set { trueweather = value; } }
+
         Random weatherChoice = new Random();
         List<string> Forecast = new List<string>() { "Sunny", "Cloudy", "Rainy", "Partly Cloudy" };
         public Weather()
@@ -17,13 +20,9 @@ namespace LemonadeStand
                 
         }
 
-        public string ForecastWeather()
+        public string WeatherChange()
         {
             return (WeatherCast = Forecast[weatherChoice.Next(1, Forecast.Count)]);
-        }
-        public string ActualWeather()
-        {
-            return (TrueWeather = Forecast[weatherChoice.Next(1, Forecast.Count)]);
         }
     }
 }
