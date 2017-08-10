@@ -32,7 +32,10 @@ namespace LemonadeStand
                 FreshStart.MakeLemonade();
 
                 Customers People = new Customers();
-                People.StartCustomers(TrueWeather);
+                People.StartCustomers();
+
+                ProfitMargins Transactions = new ProfitMargins();
+                Transactions.CalculateProfit(playerOne, People, TrueWeather);
             }
 
         }

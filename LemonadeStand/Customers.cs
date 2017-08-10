@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         Random rnd = new Random();
         List<int> CustomersOfTheDay = new List<int>();
+        List<int> PayingCustomers = new List<int>();
         public Customers()
         {
          
@@ -30,34 +31,6 @@ namespace LemonadeStand
             return CustomerList;
         }
 
-        private int SatisfactoryFromWeather(string TrueWeather)
-        {
-            int Satisfied = rnd.Next(5);
-            switch (TrueWeather)
-            {
-                case "Sunny":
-                    Satisfied++;
-                    break;
-
-                case "Cloudy":
-                    Satisfied--;
-                    break;
-
-                case "Rainy":
-                    Satisfied -= 2;
-                    break;
-
-                default:
-                    break;
-            }
-            if (Satisfied < 5)
-            {
-                Satisfied = 5;
-            }
-            return Satisfied;
-        }
-
-
         private void CheckforCustomers()
         {
             CustomersOfTheDay = ListOfCustomers();
@@ -69,14 +42,32 @@ namespace LemonadeStand
             }
            else
             {
-                Console.WriteLine($"You have {NumberOfCustomers} today.");
+                Console.WriteLine($"You have {NumberOfCustomers} potential customers today.");
             }
         }
 
-        public void StartCustomers(string TrueWeather)
+        private void ToPurchaseOrNot()
         {
-            SatisfactoryFromWeather(TrueWeather);
+            int PurchaseChoice;
+
+            for (int x = 1; x <= CustomersOfTheDay.Count; x++)
+            {
+                PurchaseChoice = rnd.Next();
+                if (PurchaseChoice % 2 != 0)
+                {
+                    CustomersOfTheDay.Remove(x);
+                }
+                else
+                {
+                    PayingCustomers.Add(x);
+                }
+            }
+        }
+                
+        public void StartCustomers()
+        {
             CheckforCustomers();
+            ToPurchaseOrNot();
         }
      }
 }
