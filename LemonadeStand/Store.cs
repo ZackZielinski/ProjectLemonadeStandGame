@@ -38,7 +38,7 @@ namespace LemonadeStand
                     Console.WriteLine($"\nThe Forecast is {DayWeather}, prices have been cut in half.");
                     for (int x = 0; x < Product.Count; x++)
                     {
-                        Product[x] *= 0.5;
+                        Product[x] = Math.Round(Product[x] * 0.5 , 2);
                     }
                     break;
 
@@ -46,7 +46,7 @@ namespace LemonadeStand
                     Console.WriteLine($"\nThe Forecast is {DayWeather}, prices have been doubled.");
                     for (int x = 0; x < Product.Count; x++)
                     {
-                        Product[x] *= 2;
+                        Product[x] = Math.Round(Product[x] * 2, 2);
                     }
                     break;
 
@@ -54,7 +54,7 @@ namespace LemonadeStand
                     Console.WriteLine($"\nThe Forecast is {DayWeather}, so the store has dropped 1/4 the prices.");
                     for (int x = 0; x < Product.Count; x++)
                     {
-                        Product[x] *= 0.25;
+                        Product[x] = Math.Round(Product[x] *0.25, 2);
                     }
                     break;
                 default:
@@ -94,7 +94,7 @@ namespace LemonadeStand
 
             int BuySugar;
 
-            Console.WriteLine($"\nThe price of sugar is ${Math.Round(Product[1],2)} per unit. How many do you wish to purchase?");
+            Console.WriteLine($"\nThe price of sugar is ${Product[1]} per unit. How many do you wish to purchase?");
             BuySugar = int.Parse(Console.ReadLine());
 
             if (player.Money - (Product[1] * BuySugar) >= 0)

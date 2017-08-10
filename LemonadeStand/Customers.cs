@@ -47,6 +47,7 @@ namespace LemonadeStand
            else
             {
                 Console.WriteLine($"You have {NumberOfCustomers} potential customers today.");
+                Console.ReadKey();
             }
         }
 

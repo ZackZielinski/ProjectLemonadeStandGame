@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Inventory : Player
+    class Inventory
     {
         double lemoninventory;
         double sugarinventory;
@@ -113,35 +113,40 @@ namespace LemonadeStand
             }
         }
 
-        private void CostOfLemonade()
+        private void CostOfLemonade(Player playerOne)
         {
             Console.WriteLine("How much are you selling your lemonade per cup?");
-            LemonadePrice = double.Parse(Console.ReadLine());
-            if (LemonadePrice >= 5.01)
+            playerOne.LemonadePrice = Math.Round(double.Parse(Console.ReadLine()),2);
+            if (playerOne.LemonadePrice >= 5.01)
             {
                 Console.WriteLine("I think that's too much for lemonade, try a smaller number");
-                CostOfLemonade();
+                CostOfLemonade(playerOne);
             }
-            else if (LemonadePrice <= 0.00)
+            else if (playerOne.LemonadePrice <= 0.00)
             {
                 Console.WriteLine("You have to make some profit at least. Please try again.");
-                CostOfLemonade();
+                CostOfLemonade(playerOne);
+            }
+            else if (playerOne.LemonadePrice <= 5 && playerOne.LemonadePrice > 0.00)
+            {
+                Console.WriteLine("Great. Now we just need to wait for your customers to arrive.");
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
-                CostOfLemonade();
+                CostOfLemonade(playerOne);
             }
         }
 
-        public void MakeLemonade()
+        public void MakeLemonade(Player playerOne)
         {
             Console.WriteLine("Now you need to make the lemonade.");
             AmountOfLemons();
             AmountOfSugar();
             AmountOfIce();
             AmountOfCups();
-            CostOfLemonade();
+            CostOfLemonade(playerOne);
         }
     }
 }

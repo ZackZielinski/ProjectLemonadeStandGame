@@ -35,7 +35,7 @@ namespace LemonadeStand
         }
         private int SatisfactoryFromWeather(string TrueWeather)
         {
-            int Satisfied = rnd.Next(5);
+            int Satisfied = rnd.Next(1,5);
             switch (TrueWeather)
             {
                 case "Sunny":

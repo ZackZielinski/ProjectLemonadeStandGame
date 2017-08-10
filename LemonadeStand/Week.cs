@@ -23,7 +23,7 @@ namespace LemonadeStand
                                          
             while (Days < 8)
             {
-                Console.WriteLine($"Day: {Days}, Cash: {playerOne.Money}, Lemons: {playerOne.backpack.LemonInventory}, Sugar: {playerOne.backpack.SugarInventory}, Ice: {playerOne.backpack.IceInventory}, Cups: {playerOne.backpack.CupInventory}");
+                Console.WriteLine($"Day: {Days}, Cash: ${playerOne.Money}, Lemons: {playerOne.backpack.LemonInventory}, Sugar: {playerOne.backpack.SugarInventory}, Ice: {playerOne.backpack.IceInventory}, Cups: {playerOne.backpack.CupInventory}");
 
                 
                 string WeatherPredict = newDay.WeatherChange();
@@ -32,12 +32,10 @@ namespace LemonadeStand
                 
                 Supplies.StartTransactions(WeatherPredict, playerOne.backpack, playerOne);
 
-                playerOne.backpack.MakeLemonade();
+                playerOne.backpack.MakeLemonade(playerOne);
 
-                
                 People.StartCustomers();
-
-                
+                                
                 Transactions.CalculateProfit(playerOne, People, TrueWeather);
             }
 
