@@ -21,16 +21,16 @@ namespace LemonadeStand
             playerOne.Profit = (playerOne.LemonadePrice * CustomersToday);
             playerOne.Money += playerOne.Profit;
 
-            Console.WriteLine($"You had {CustomersToday} customers today.");
+            Console.WriteLine($"\nYou had {CustomersToday} customers today.");
             Console.WriteLine($"Therefore, you earned ${playerOne.Profit} and your current total is ${playerOne.Money}");
 
-            for (int x = 1; x <= people.PayingCustomers.Count;)
+            for (int x = 1; x <= people.PayingCustomers.Count; x++)
             {
                 SatisfiedNumber = SatisfactoryFromWeather(TrueWeather);
 
-                Console.WriteLine($"Customer {x} rated your lemonade {SatisfiedNumber} out of 5.");
-
+                Console.WriteLine($"\nCustomer {x} rated your lemonade {SatisfiedNumber} out of 5.");
             }
+            Console.ReadLine();
 
         }
         private int SatisfactoryFromWeather(string TrueWeather)
@@ -59,6 +59,7 @@ namespace LemonadeStand
             }
             return Satisfied;
         }
+        
         public void CalculateProfit(Player player, Customers people, string TrueWeather)
         {
             Payments(player, people, TrueWeather);

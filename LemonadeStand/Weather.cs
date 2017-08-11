@@ -20,9 +20,26 @@ namespace LemonadeStand
                 
         }
 
-        public string WeatherChange()
+        private string CurrentWeather()
         {
             return (WeatherCast = Forecast[weatherChoice.Next(1, Forecast.Count)]);
+        }
+
+        public void ShowRealWeather(string CurrentWeather)
+        {
+            Console.WriteLine($"\nThe actual weather today is {CurrentWeather}.");
+            Console.ReadKey();
+        }
+        public List<string> WeatherChanges()
+        {
+            List<string> WeatherOfTheDay = new List<string>();
+            string WeatherPredict = CurrentWeather();
+            string TrueWeather = CurrentWeather();
+
+            WeatherOfTheDay.Add(WeatherPredict);
+            WeatherOfTheDay.Add(TrueWeather);
+
+            return WeatherOfTheDay;
         }
     }
 }

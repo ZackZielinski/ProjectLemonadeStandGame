@@ -66,10 +66,15 @@ namespace LemonadeStand
             
             private void LemonPurchase(List<double>Product, Inventory backpack, Player player){
             
-            int BuyLemons;
+            int BuyLemons = 0;
             
             Console.WriteLine($"\nThe price of lemons are ${Product[0]} per unit. How many do you wish to purchase?");
-            BuyLemons = int.Parse(Console.ReadLine());
+            try { BuyLemons = int.Parse(Console.ReadLine()); }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Must enter an integer.");
+                LemonPurchase(Product, backpack, player);
+            }
 
             if (player.Money - (Product[0] * BuyLemons) >=0)
             {
@@ -92,10 +97,16 @@ namespace LemonadeStand
         private void SugarPurchase(List<double> Product, Inventory backpack, Player player)
         {
 
-            int BuySugar;
+            int BuySugar = 0;
 
             Console.WriteLine($"\nThe price of sugar is ${Product[1]} per unit. How many do you wish to purchase?");
-            BuySugar = int.Parse(Console.ReadLine());
+            try { BuySugar = int.Parse(Console.ReadLine()); }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Must enter an integer.");
+                SugarPurchase(Product, backpack, player);
+            }
+
 
             if (player.Money - (Product[1] * BuySugar) >= 0)
             {
@@ -118,10 +129,15 @@ namespace LemonadeStand
         private void IcePurchase(List<double> Product, Inventory backpack, Player player)
         {
 
-            int BuyIce;
+            int BuyIce = 0;
 
             Console.WriteLine($"\nThe price of Ice are ${Product[2]} per unit. How many do you wish to purchase?");
-            BuyIce = int.Parse(Console.ReadLine());
+            try { BuyIce = int.Parse(Console.ReadLine()); }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Must enter an integer.");
+                IcePurchase(Product, backpack, player);
+            }
 
             if (player.Money - (Product[2] * BuyIce) >= 0)
             {
@@ -143,10 +159,15 @@ namespace LemonadeStand
         private void CupPurchase(List<double> Product, Inventory backpack, Player player)
         {
 
-            int BuyCups;
+            int BuyCups = 0;
 
             Console.WriteLine($"\nThe price of cups are ${Product[3]} per unit. How many do you wish to purchase?");
-            BuyCups = int.Parse(Console.ReadLine());
+            try { BuyCups = int.Parse(Console.ReadLine()); }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Must enter an integer.");
+                CupPurchase(Product, backpack, player);
+            }
 
             if (player.Money - (Product[3] * BuyCups) >= 0)
             {

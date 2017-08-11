@@ -42,12 +42,12 @@ namespace LemonadeStand
                 
            if (NumberOfCustomers == 0)
             {
-                Console.WriteLine("You didn't have any customers today.");
+                Console.WriteLine("\nYou didn't have any customers today.");
             }
            else
             {
-                Console.WriteLine($"You have {NumberOfCustomers} potential customers today.");
-                Console.ReadKey();
+                Console.WriteLine($"\nYou have {NumberOfCustomers} potential customers today.");
+                Console.ReadLine();
             }
         }
 
@@ -57,12 +57,8 @@ namespace LemonadeStand
 
             for (int x = 1; x <= CustomersOfTheDay.Count; x++)
             {
-                PurchaseChoice = rnd.Next();
-                if (PurchaseChoice % 2 != 0)
-                {
-                    CustomersOfTheDay.Remove(x);
-                }
-                else
+                PurchaseChoice = rnd.Next(10);
+                if (PurchaseChoice % 2 == 0)
                 {
                     PayingCustomers.Add(x);
                 }

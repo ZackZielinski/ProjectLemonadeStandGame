@@ -28,7 +28,7 @@ namespace LemonadeStand
 
         private void AmountOfLemons(){
 
-            Console.WriteLine("How many Lemons are you going to use today?");
+            Console.WriteLine("\nHow many Lemons are you going to use today?");
             int LemonsUsed = int.Parse(Console.ReadLine());
 
             if (LemonsUsed <= LemonInventory)
@@ -49,7 +49,7 @@ namespace LemonadeStand
         private void AmountOfSugar()
         {
 
-            Console.WriteLine("How much Sugar are you going to use today?");
+            Console.WriteLine("\nHow much Sugar are you going to use today?");
             int SugarUsed = int.Parse(Console.ReadLine());
 
             if (SugarUsed <= SugarInventory)
@@ -71,7 +71,7 @@ namespace LemonadeStand
         private void AmountOfIce()
         {
 
-            Console.WriteLine("How much Ice are you going to use today?");
+            Console.WriteLine("\nHow much Ice are you going to use today?");
             int IceUsed = int.Parse(Console.ReadLine());
 
             if (IceUsed <= IceInventory)
@@ -93,7 +93,7 @@ namespace LemonadeStand
 
         private void AmountOfCups()
         {
-            Console.WriteLine("How many Cups are you going to make today?");
+            Console.WriteLine("\nHow many Cups are you going to make today?");
             int CupsUsed = int.Parse(Console.ReadLine());
 
             if (CupsUsed <= CupInventory)
@@ -115,14 +115,14 @@ namespace LemonadeStand
 
         private void CostOfLemonade(Player playerOne)
         {
-            Console.WriteLine("How much are you selling your lemonade per cup?");
+            Console.WriteLine("\nHow much are you selling your lemonade per cup?");
             playerOne.LemonadePrice = Math.Round(double.Parse(Console.ReadLine()),2);
             if (playerOne.LemonadePrice >= 5.01)
             {
                 Console.WriteLine("I think that's too much for lemonade, try a smaller number");
                 CostOfLemonade(playerOne);
             }
-            else if (playerOne.LemonadePrice <= 0.00)
+            else if (playerOne.LemonadePrice <= 0.10)
             {
                 Console.WriteLine("You have to make some profit at least. Please try again.");
                 CostOfLemonade(playerOne);
@@ -141,7 +141,7 @@ namespace LemonadeStand
 
         public void MakeLemonade(Player playerOne)
         {
-            Console.WriteLine("Now you need to make the lemonade.");
+            Console.WriteLine("\nNow you need to make the lemonade.");
             AmountOfLemons();
             AmountOfSugar();
             AmountOfIce();
