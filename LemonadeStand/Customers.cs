@@ -9,8 +9,10 @@ namespace LemonadeStand
     class Customers
     {
         Random rnd = new Random();
-        List<int> CustomersOfTheDay = new List<int>();
+        List<int> customersoftheday = new List<int>();
         List<int> payingcustomers = new List<int>();
+
+        public List<int> CustomersOfTheDay { get { return customersoftheday; } set { customersoftheday = value; } }
 
         public List<int> PayingCustomers { get { return payingcustomers; } set { payingcustomers = value; } }
 

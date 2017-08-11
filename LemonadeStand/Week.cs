@@ -18,9 +18,9 @@ namespace LemonadeStand
             Store Supplies = new Store();
             Customers People = new Customers();
             ProfitMargins Transactions = new ProfitMargins();
-            int Days = 1;
 
-                                         
+            int Days = 1;
+                                                     
             while (Days < 8)
             {
                 List<string> WeatherofTheDay = newDay.WeatherChanges();
