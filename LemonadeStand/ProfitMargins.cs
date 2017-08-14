@@ -16,20 +16,60 @@ namespace LemonadeStand
 
         private void Payments(Player playerOne, Customers people, string TrueWeather)
         {
-            int SatisfiedNumber;
-            int CustomersToday = people.PayingCustomers.Count;
-            playerOne.Profit = (playerOne.LemonadePrice * CustomersToday);
+            int SatisfyFromWeather;
+            int SatisfyFromImperfections;
+            int SatisfiedNumber = 0;
+            int CustomersDrink;
+            List<int> CustomersPaid = new List<int>();
+                        
+            
+            for (int y = 1; y <= people.CustomersOfTheDay.Count; y++)
+            {
+                SatisfyFromWeather = SatisfactoryFromWeather(TrueWeather);
+                SatisfyFromImperfections = SatisfactoryFromImperfections(playerOne.backpack.Imperfections);
+
+                SatisfiedNumber = (SatisfyFromWeather + SatisfyFromImperfections);
+                if (SatisfiedNumber > 5)
+                {
+                    SatisfiedNumber = 5;
+                }
+                else if (SatisfiedNumber <= 0)
+                    {
+                        SatisfiedNumber = 1;
+                    }
+                else if (SatisfiedNumber >= 3)
+                {
+                    CustomersPaid.Add(y);
+                }
+            }
+
+            CustomersDrink = (playerOne.backpack.CupsTotal - CustomersPaid.Count);
+
+            while (playerOne.backpack.CupsTotal > 0)
+            {
+                if (playerOne.backpack.CupsTotal <= CustomersPaid.Count)
+                {
+                    playerOne.Profit += playerOne.LemonadePrice;
+                }
+                else if (playerOne.backpack.CupsTotal == 0)
+                {
+                    Console.WriteLine("Sorry, you ran out of cups to disperse.");
+                    break;
+                }
+                playerOne.backpack.CupsTotal--;
+            }
+
+            for (int x = 1; x <= CustomersDrink; x++)
+            {
+                Console.WriteLine($"\nCustomer {x} rated your lemonade {SatisfiedNumber} out of 5.");
+                
+            }
+
             playerOne.Money += playerOne.Profit;
 
-            Console.WriteLine($"\nYou had {CustomersToday} customers today.");
+            Console.WriteLine($"\nYou had {CustomersDrink} customers today.");
             Console.WriteLine($"Therefore, you earned ${playerOne.Profit} and your current total is ${playerOne.Money}");
 
-            for (int x = 1; x <= people.PayingCustomers.Count; x++)
-            {
-                SatisfiedNumber = SatisfactoryFromWeather(TrueWeather);
-
-                Console.WriteLine($"\nCustomer {x} rated your lemonade {SatisfiedNumber} out of 5.");
-            }
             Console.ReadLine();
 
         }
@@ -53,10 +93,32 @@ namespace LemonadeStand
                 default:
                     break;
             }
-            if (Satisfied > 5)
+            
+            return Satisfied;
+        }
+
+        private int SatisfactoryFromImperfections(List<int> imperfections)
+        {
+            int Satisfied = 0;
+
+            if (imperfections[0] > 0)
             {
-                Satisfied = 5;
+                Satisfied -= 2;
             }
+            else
+            {
+                Satisfied++;
+            }
+
+            if (imperfections[1] > 0)
+            {
+                Satisfied--;
+            }
+            else
+            {
+                Satisfied++;
+            }
+
             return Satisfied;
         }
         

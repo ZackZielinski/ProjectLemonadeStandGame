@@ -14,10 +14,10 @@ namespace LemonadeStand
         public string TrueWeather { get { return trueweather; } set { trueweather = value; } }
 
         Random weatherChoice = new Random();
-        List<string> Forecast = new List<string>() { "Sunny", "Cloudy", "Rainy", "Partly Cloudy" };
+        List<string> Forecast;
         public Weather()
         {
-                
+            Forecast = new List<string>() { "Sunny", "Cloudy", "Rainy", "Partly Cloudy" };
         }
 
         private string CurrentWeather()

@@ -14,6 +14,7 @@ namespace LemonadeStand
         }
         public void DaysOfTheWeek(Player playerOne)
         {
+            Recipe Food = new Recipe();
             Weather newDay = new Weather();
             Store Supplies = new Store();
             Customers People = new Customers();
@@ -29,8 +30,8 @@ namespace LemonadeStand
                                                
                 Supplies.StartTransactions(WeatherofTheDay[0], playerOne.backpack, playerOne);
 
-                playerOne.backpack.MakeLemonade(playerOne);
-
+                playerOne.backpack.MakeLemonade(playerOne, Food);
+                
                 newDay.ShowRealWeather(WeatherofTheDay[1]);
 
                 People.StartCustomers();
@@ -38,7 +39,7 @@ namespace LemonadeStand
                 Transactions.CalculateProfit(playerOne, People, WeatherofTheDay[1]);
                 Days++;
             }
-
+            //Have a function to save player.name & player.inventory 
         }
     }
 }

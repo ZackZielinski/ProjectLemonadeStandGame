@@ -10,12 +10,8 @@ namespace LemonadeStand
     {
         Random rnd = new Random();
         List<int> customersoftheday = new List<int>();
-        List<int> payingcustomers = new List<int>();
-
+        
         public List<int> CustomersOfTheDay { get { return customersoftheday; } set { customersoftheday = value; } }
-
-        public List<int> PayingCustomers { get { return payingcustomers; } set { payingcustomers = value; } }
-
 
         public Customers()
         {
@@ -45,6 +41,7 @@ namespace LemonadeStand
            if (NumberOfCustomers == 0)
             {
                 Console.WriteLine("\nYou didn't have any customers today.");
+                //end day
             }
            else
             {
@@ -52,25 +49,10 @@ namespace LemonadeStand
                 Console.ReadLine();
             }
         }
-
-        private void ToPurchaseOrNot()
-        {
-            int PurchaseChoice;
-
-            for (int x = 1; x <= CustomersOfTheDay.Count; x++)
-            {
-                PurchaseChoice = rnd.Next(10);
-                if (PurchaseChoice % 2 == 0)
-                {
-                    PayingCustomers.Add(x);
-                }
-            }
-        }
                 
         public void StartCustomers()
         {
             CheckforCustomers();
-            ToPurchaseOrNot();
         }
      }
 }
