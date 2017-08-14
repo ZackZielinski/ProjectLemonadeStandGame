@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class SqlConnection
+    class Database
     {
-        public SqlConnection()
+        public Database()
         {
-                
+            SqlConnection gamesave = new SqlConnection();
         }
     }
 }

@@ -21,6 +21,26 @@ namespace LemonadeStand
 
         }
 
+        private void CheckPlayerInventory(Player playerOne)
+        {
+            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.LemonInventory);
+            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.SugarInventory);
+            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.IceInventory);
+
+
+            for (int x = 0; x < playerOne.backpack.PlayerSupplies.Count; x++)
+            {
+                if (playerOne.backpack.PlayerSupplies[x] == 0)
+                {
+                    if (playerOne.Money <= 0.00)
+                    {
+                        Console.WriteLine("Darn, you don't have any money to spend at the store.");
+
+                    }
+                }
+            }
+        }
+
         private void Purchase(string ForecastWeather)
         {
             Console.WriteLine("You will need to go to the store to supply yourself for lemonade.");
@@ -67,6 +87,7 @@ namespace LemonadeStand
             private void LemonPurchase(List<double>Product, Inventory backpack, Player player){
             
             int BuyLemons = 0;
+            CheckPlayerInventory(player);
             
             Console.WriteLine($"\nThe price of lemons are ${Product[0]} per unit. How many do you wish to purchase?");
             try { BuyLemons = int.Parse(Console.ReadLine()); }
@@ -98,6 +119,7 @@ namespace LemonadeStand
         {
 
             int BuySugar = 0;
+            CheckPlayerInventory(player);
 
             Console.WriteLine($"\nThe price of sugar is ${Product[1]} per unit. How many do you wish to purchase?");
             try { BuySugar = int.Parse(Console.ReadLine()); }
@@ -130,6 +152,7 @@ namespace LemonadeStand
         {
 
             int BuyIce = 0;
+            CheckPlayerInventory(player);
 
             Console.WriteLine($"\nThe price of Ice are ${Product[2]} per unit. How many do you wish to purchase?");
             try { BuyIce = int.Parse(Console.ReadLine()); }
@@ -160,6 +183,7 @@ namespace LemonadeStand
         {
 
             int BuyCups = 0;
+            CheckPlayerInventory(player);
 
             Console.WriteLine($"\nThe price of cups are ${Product[3]} per unit. How many do you wish to purchase?");
             try { BuyCups = int.Parse(Console.ReadLine()); }
@@ -190,6 +214,7 @@ namespace LemonadeStand
         public void StartTransactions(string WeatherPredict, Inventory backpack, Player playerOne)
         {
             Purchase(WeatherPredict);
+            CheckPlayerInventory(playerOne);
             LemonPurchase(Product, backpack, playerOne);
             SugarPurchase(Product, backpack, playerOne);
             IcePurchase(Product, backpack, playerOne);

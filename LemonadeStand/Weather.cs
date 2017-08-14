@@ -25,9 +25,9 @@ namespace LemonadeStand
             return (WeatherCast = Forecast[weatherChoice.Next(1, Forecast.Count)]);
         }
 
-        public void ShowRealWeather(string CurrentWeather)
+        public void ShowRealWeather(string ActualWeather)
         {
-            Console.WriteLine($"\nThe actual weather today is {CurrentWeather}.");
+            Console.WriteLine($"\nThe actual weather today is {ActualWeather}.");
             Console.ReadKey();
         }
         public List<string> WeatherChanges()

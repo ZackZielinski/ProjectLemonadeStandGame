@@ -34,7 +34,7 @@ namespace LemonadeStand
                 
                 newDay.ShowRealWeather(WeatherofTheDay[1]);
 
-                People.StartCustomers();
+                People.StartCustomers(playerOne);
                                 
                 Transactions.CalculateProfit(playerOne, People, WeatherofTheDay[1]);
                 Days++;

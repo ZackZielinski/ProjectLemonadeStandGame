@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class ProfitMargins
+    class ProfitMargins : DisplayProfits
     {
         Random rnd = new Random();
         public ProfitMargins()
@@ -14,6 +14,7 @@ namespace LemonadeStand
                 
         }
 
+        
         private void Payments(Player playerOne, Customers people, string TrueWeather)
         {
             int SatisfyFromWeather;
@@ -53,7 +54,7 @@ namespace LemonadeStand
                 }
                 else if (playerOne.backpack.CupsTotal == 0)
                 {
-                    Console.WriteLine("Sorry, you ran out of cups to disperse.");
+                    Console.WriteLine("You ran out of cups to disperse.");
                     break;
                 }
                 playerOne.backpack.CupsTotal--;
@@ -68,10 +69,7 @@ namespace LemonadeStand
             playerOne.Money += playerOne.Profit;
 
             Console.WriteLine($"\nYou had {CustomersDrink} customers today.");
-            Console.WriteLine($"Therefore, you earned ${playerOne.Profit} and your current total is ${playerOne.Money}");
-
-            Console.ReadLine();
-
+            DisplayProfit(playerOne);
         }
         private int SatisfactoryFromWeather(string TrueWeather)
         {

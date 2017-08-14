@@ -16,8 +16,9 @@ namespace LemonadeStand
         int sourdrink;
         int cupstotal;
 
-
+        List<double> playersupplies = new List<double>();
         List<int> imperfections = new List<int>();
+
         public double LemonInventory { get { return lemoninventory; } set { lemoninventory = value; } }
 
         public double SugarInventory { get { return sugarinventory; } set { sugarinventory = value; } }
@@ -32,6 +33,8 @@ namespace LemonadeStand
 
         public int CupsTotal { get { return cupstotal; } set { cupstotal = value; } }
 
+        public List<double> PlayerSupplies { get { return playersupplies; } set { playersupplies = value; } }
+
         public List<int> Imperfections { get { return imperfections; } set { imperfections = value; } }
 
         public Inventory()
@@ -39,11 +42,12 @@ namespace LemonadeStand
             
         }
 
-        private void CheckForLemons()
+        private void CheckForLemons(int LemonsNeeded)
         {
-            if (LemonInventory == 0)
+            if (LemonInventory == 0 || LemonInventory < LemonsNeeded)
             {
-                Console.WriteLine("Sorry, you don't have any lemons to make lemonade. Game Over.");
+                Console.WriteLine("Sorry, you don't have enough lemons to make lemonade. Game Over.");
+                Console.ReadKey();
                 //go to save function
             }
         }
@@ -53,6 +57,7 @@ namespace LemonadeStand
             if (CupInventory == 0)
             {
                 Console.WriteLine("Sorry, you don't have any cups to serve the lemonade. Game Over.");
+                Console.ReadKey();
                 //go to save function
             }
         }
@@ -62,7 +67,8 @@ namespace LemonadeStand
             Console.WriteLine("\nHow many Lemons are you going to use today?");
             int LemonsUsed = int.Parse(Console.ReadLine());
             {
-                if (LemonsUsed <= LemonInventory)
+                
+                if (LemonsUsed >= LemonsNeeded && LemonsUsed <= LemonInventory)
                 {
                     LemonInventory -= LemonsUsed;
                     Console.WriteLine($"You have {LemonInventory} units of Lemons left.");
@@ -86,19 +92,13 @@ namespace LemonadeStand
 
             Console.WriteLine("\nHow much Sugar are you going to use today?");
             int SugarUsed = int.Parse(Console.ReadLine());
-            if (SugarUsed < SugarNeeded || SugarInventory < SugarNeeded)
-            {
-                SourDrink++;
-            }
-
-            if (SugarUsed >= SugarNeeded)
-            {
-                if (SugarUsed <= SugarInventory)
+            
+                if (SugarUsed >= SugarNeeded && SugarUsed <= SugarInventory)
                 {
                     SugarInventory -= SugarUsed;
                     Console.WriteLine($"You have {SugarInventory} units of Sugar left.");
                 }
-                else if (SugarUsed > SugarInventory)
+                else if (SugarUsed > SugarNeeded && SugarUsed <= SugarInventory) 
                 {
                     Console.WriteLine($"You only have {SugarInventory} units of Sugar. Please try again.");
                     AmountOfSugar(SugarNeeded);
@@ -108,8 +108,13 @@ namespace LemonadeStand
                     Console.WriteLine("Invalid Input. Please try again.");
                     AmountOfSugar(SugarNeeded);
                 }
+            
+            if (SugarUsed < SugarNeeded || SugarInventory < SugarNeeded)
+            {
+                SourDrink++;
             }
-           
+
+
         }
 
         private void AmountOfIce(int IceNeeded)
@@ -122,7 +127,7 @@ namespace LemonadeStand
                 WarmDrink++;
             }
 
-            if (IceUsed <= IceInventory)
+            if (IceUsed >= IceNeeded && IceUsed <= IceInventory)
             {
                 IceInventory -= IceUsed;
                 Console.WriteLine($"You have {IceInventory} units of Ice left.");
@@ -154,6 +159,12 @@ namespace LemonadeStand
                 Console.WriteLine($"You only have {CupInventory} Cups. Please try again.");
                 AmountOfCups();
             }
+            else if (CupsUsed == 0)
+            {
+                Console.WriteLine($"You can't serve {CupsUsed} cups of lemonade.");
+                AmountOfCups();
+            }
+
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
@@ -164,7 +175,13 @@ namespace LemonadeStand
         private void CostOfLemonade(Player playerOne)
         {
             Console.WriteLine("\nHow much are you selling your lemonade per cup?");
-            playerOne.LemonadePrice = Math.Round(double.Parse(Console.ReadLine()),2);
+            try { playerOne.LemonadePrice = Math.Round(double.Parse(Console.ReadLine()), 2); }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error. Must enter an integer or decimal number.");
+                CostOfLemonade(playerOne);
+            }
+
             if (playerOne.LemonadePrice >= 5.01)
             {
                 Console.WriteLine("I think that's too much for lemonade, try a smaller number");
@@ -196,8 +213,8 @@ namespace LemonadeStand
         public void MakeLemonade(Player playerOne, Recipe recipe)
         {
             recipe.DisplayRecipe();
-            CheckForLemons();
-            CheckForLemons();
+            CheckForLemons(recipe.LemonsNeeded);
+            CheckForCups();
             AmountOfLemons(recipe.LemonsNeeded);
             AmountOfSugar(recipe.SugarNeeded);
             AmountOfIce(recipe.IceNeeded);

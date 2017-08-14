@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customers
+    class Customers : DisplayProfits
     {
         Random rnd = new Random();
         List<int> customersoftheday = new List<int>();
@@ -33,7 +33,7 @@ namespace LemonadeStand
             return CustomerList;
         }
 
-        private void CheckforCustomers()
+        private void CheckforCustomers(Player playerOne)
         {
             CustomersOfTheDay = ListOfCustomers();
             int NumberOfCustomers = CustomersOfTheDay.Count;
@@ -41,7 +41,7 @@ namespace LemonadeStand
            if (NumberOfCustomers == 0)
             {
                 Console.WriteLine("\nYou didn't have any customers today.");
-                //end day
+                DisplayProfit(playerOne);
             }
            else
             {
@@ -50,9 +50,9 @@ namespace LemonadeStand
             }
         }
                 
-        public void StartCustomers()
+        public void StartCustomers(Player playerOne)
         {
-            CheckforCustomers();
+            CheckforCustomers(playerOne);
         }
      }
 }
