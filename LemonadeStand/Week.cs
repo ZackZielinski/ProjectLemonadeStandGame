@@ -39,7 +39,7 @@ namespace LemonadeStand
                 Transactions.CalculateProfit(playerOne, People, WeatherofTheDay[1]);
                 Days++;
             }
-            //Have a function to save player.name & player.inventory 
+            
         }
     }
 }

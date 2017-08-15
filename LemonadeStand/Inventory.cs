@@ -48,7 +48,7 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Sorry, you don't have enough lemons to make lemonade. Game Over.");
                 Console.ReadKey();
-                //go to save function
+                
             }
         }
 
@@ -58,7 +58,7 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Sorry, you don't have any cups to serve the lemonade. Game Over.");
                 Console.ReadKey();
-                //go to save function
+                
             }
         }
 

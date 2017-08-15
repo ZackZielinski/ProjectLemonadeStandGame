@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customers.cs" />
-    <Compile Include="Database.cs" />
     <Compile Include="DisplayProfits.cs" />
     <Compile Include="ProfitMargins.cs" />
     <Compile Include="Recipe.cs" />
