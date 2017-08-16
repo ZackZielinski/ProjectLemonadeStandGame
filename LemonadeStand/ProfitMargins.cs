@@ -27,7 +27,7 @@ namespace LemonadeStand
             for (int y = 1; y <= people.CustomersOfTheDay.Count; y++)
             {
                 SatisfyFromWeather = SatisfactoryFromWeather(TrueWeather);
-                SatisfyFromImperfections = SatisfactoryFromImperfections(playerOne.backpack.Imperfections);
+                SatisfyFromImperfections = ChangingSatisfactoryFromImperfections(playerOne.backpack.Imperfections);
 
                 SatisfiedNumber = (SatisfyFromWeather + SatisfyFromImperfections);
                 if (SatisfiedNumber > 5)
@@ -95,7 +95,7 @@ namespace LemonadeStand
             return Satisfied;
         }
 
-        private int SatisfactoryFromImperfections(List<int> imperfections)
+        private int ChangingSatisfactoryFromImperfections(List<int> imperfections)
         {
             int Satisfied = 0;
 

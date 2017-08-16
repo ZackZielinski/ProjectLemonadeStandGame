@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Week
+    public class Week
     {
-        
+        int days = 1;
+
+        public int Days { get { return days; } set { days = value; } }
+
         public Week()
         {
         }
-        public void DaysOfTheWeek(Player playerOne)
+        public void GetDaysOfTheWeek(Player playerOne)
         {
             Recipe Food = new Recipe();
             Weather newDay = new Weather();
@@ -20,26 +23,35 @@ namespace LemonadeStand
             Customers People = new Customers();
             ProfitMargins Transactions = new ProfitMargins();
 
-            int Days = 1;
-                                                     
+                                                                
             while (Days < 8)
             {
                 List<string> WeatherofTheDay = newDay.WeatherChanges();
 
                 Console.WriteLine($"Day: {Days}, Cash: ${playerOne.Money}, Lemons: {playerOne.backpack.LemonInventory}, Sugar: {playerOne.backpack.SugarInventory}, Ice: {playerOne.backpack.IceInventory}, Cups: {playerOne.backpack.CupInventory}");
                                                
-                Supplies.StartTransactions(WeatherofTheDay[0], playerOne.backpack, playerOne);
+                Supplies.StartTransactions(WeatherofTheDay[0], playerOne.backpack, playerOne, Food);
 
                 playerOne.backpack.MakeLemonade(playerOne, Food);
-                
-                newDay.ShowRealWeather(WeatherofTheDay[1]);
+                if (playerOne.backpack.IsGameOver[0] == true || playerOne.backpack.IsGameOver[1] == true)
+                {
+                    break;
+                }
+                else
+                {
+                    newDay.ShowRealWeather(WeatherofTheDay[1]);
 
-                People.StartCustomers(playerOne);
-                                
-                Transactions.CalculateProfit(playerOne, People, WeatherofTheDay[1]);
-                Days++;
+                    People.StartCustomers(playerOne);
+
+                    Transactions.CalculateProfit(playerOne, People, WeatherofTheDay[1]);
+
+                    Days++;
+                }
             }
-            
+            DatabaseSave saveGameComplete = new DatabaseSave();
+            saveGameComplete.Save(playerOne.Name, Days, Convert.ToInt32(playerOne.backpack.LemonInventory), Convert.ToInt32(playerOne.backpack.SugarInventory), Convert.ToInt32(playerOne.backpack.IceInventory), Convert.ToInt32(playerOne.backpack.CupInventory));
+            DatabaseLoad loadGame = new DatabaseLoad();
+            loadGame.LoadGame();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace LemonadeStand
             playerOne.StartingNewGame();
 
             BeginWeek = new Week();
-            BeginWeek.DaysOfTheWeek(playerOne);
+            BeginWeek.GetDaysOfTheWeek(playerOne);
         }
 
     }

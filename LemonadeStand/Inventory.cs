@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Inventory
+    public class Inventory
     {
+        
         double lemoninventory;
         double sugarinventory;
         double iceinventory;
@@ -18,6 +19,7 @@ namespace LemonadeStand
 
         List<double> playersupplies = new List<double>();
         List<int> imperfections = new List<int>();
+        List<bool> isgameover = new List<bool>();
 
         public double LemonInventory { get { return lemoninventory; } set { lemoninventory = value; } }
 
@@ -37,29 +39,39 @@ namespace LemonadeStand
 
         public List<int> Imperfections { get { return imperfections; } set { imperfections = value; } }
 
+        public List<bool> IsGameOver { get { return isgameover; } set { isgameover = value; } }
         public Inventory()
         {
             
         }
 
-        private void CheckForLemons(int LemonsNeeded)
+        private bool CheckForLemons(int LemonsNeeded)
         {
-            if (LemonInventory == 0 || LemonInventory < LemonsNeeded)
+            bool HasGameEnded = false;
+
+            if (LemonInventory < LemonsNeeded)
             {
                 Console.WriteLine("Sorry, you don't have enough lemons to make lemonade. Game Over.");
                 Console.ReadKey();
-                
+                HasGameEnded = true;
             }
+            return HasGameEnded;
         }
 
-        private void CheckForCups()
+        private bool CheckForCups()
         {
-            if (CupInventory == 0)
+            bool HasGameEnded = false;
+            if (CupInventory == 0 && IsGameOver[0] == false)
             {
                 Console.WriteLine("Sorry, you don't have any cups to serve the lemonade. Game Over.");
                 Console.ReadKey();
-                
+                HasGameEnded = true;
             }
+            else
+            {
+                HasGameEnded = true;
+            }
+            return HasGameEnded;
         }
 
         private void AmountOfLemons(int LemonsNeeded)
@@ -210,17 +222,25 @@ namespace LemonadeStand
             Imperfections.Add(WarmDrink);
         }
 
-        public void MakeLemonade(Player playerOne, Recipe recipe)
+        public void MakeLemonade(Player player, Recipe recipe)
         {
             recipe.DisplayRecipe();
-            CheckForLemons(recipe.LemonsNeeded);
-            CheckForCups();
-            AmountOfLemons(recipe.LemonsNeeded);
-            AmountOfSugar(recipe.SugarNeeded);
-            AmountOfIce(recipe.IceNeeded);
-            AmountOfCups();
-            CostOfLemonade(playerOne);
-            ListOfImperfections();
+
+            IsGameOver.Add(CheckForLemons(recipe.LemonsNeeded));
+            IsGameOver.Add(CheckForCups());
+            if (IsGameOver[0] == true || IsGameOver[1] == true)
+            {
+                return;
+            }
+            else
+            {
+                AmountOfLemons(recipe.LemonsNeeded);
+                AmountOfSugar(recipe.SugarNeeded);
+                AmountOfIce(recipe.IceNeeded);
+                AmountOfCups();
+                CostOfLemonade(player);
+                ListOfImperfections();
+            }
 
             }
     }

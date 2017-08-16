@@ -1,0 +1,9 @@
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\InventoryUnitTest.dll
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\InventoryUnitTest.pdb
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\LemonadeStand.exe
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\LemonadeStand.pdb
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\obj\Debug\InventoryUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\obj\Debug\InventoryUnitTest.dll
+C:\Users\Zack\Desktop\C# (Sharp)\ProjectLemonadeStandGame\InventoryUnitTest\obj\Debug\InventoryUnitTest.pdb

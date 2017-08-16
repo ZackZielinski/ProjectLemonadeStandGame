@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Player
+    public class Player
     {
         public Inventory backpack = new Inventory();
         double money = 20.00;
@@ -24,17 +24,17 @@ namespace LemonadeStand
         public Player()
         {
         }
-        private void PlayerName()
+        private void GetPlayerName()
         {
             Console.WriteLine("Enter Player Name");
             Name = Console.ReadLine();
             if (Name == "")
             {
                 Console.WriteLine("Sorry, you need to enter in a name to continue.");
-                PlayerName();
+                GetPlayerName();
             }
         }
-        private void Rules()
+        private void DisplayRules()
         {
             Console.WriteLine("Welcome to Lemonade Stand");
             Console.WriteLine("You will have 7 days to earn as much money from selling lemonade");
@@ -43,8 +43,8 @@ namespace LemonadeStand
 
         public void StartingNewGame()
         {
-            Rules();
-            PlayerName();
+            DisplayRules();
+            GetPlayerName();
         }
 
     }

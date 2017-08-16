@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Store
+    public class Store
     {
-        double LemonPrice = 0.20;
-        double SugarPrice = 0.05;
-        double IcePrice = 0.10;
-        double CupPrice = 0.20;
+        double lemonprice = 0.20;
+        double sugarprice = 0.05;
+        double iceprice = 0.10;
+        double cupprice = 0.20;
 
-        List<double> Product;
+        public double LemonPrice { get { return lemonprice; } set { lemonprice = value; } }
+
+        public double SugarPrice { get { return sugarprice; } set { sugarprice = value; } }
+
+        public double IcePrice { get { return iceprice; } set { iceprice = value; } }
+
+        public double CupPrice { get { return cupprice; } set { cupprice = value; } }
+
+        List<double> product;
+
+        public List<double> Product { get { return product; } set { product = value; } }
 
         public Store()
         {
@@ -21,27 +31,7 @@ namespace LemonadeStand
 
         }
 
-        private void CheckPlayerInventory(Player playerOne)
-        {
-            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.LemonInventory);
-            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.SugarInventory);
-            playerOne.backpack.PlayerSupplies.Add(playerOne.backpack.IceInventory);
-
-
-            for (int x = 0; x < playerOne.backpack.PlayerSupplies.Count; x++)
-            {
-                if (playerOne.backpack.PlayerSupplies[x] == 0)
-                {
-                    if (playerOne.Money <= 0.00)
-                    {
-                        Console.WriteLine("Darn, you don't have any money to spend at the store.");
-
-                    }
-                }
-            }
-        }
-
-        private void Purchase(string ForecastWeather)
+        private void FindWeather(string ForecastWeather)
         {
             Console.WriteLine("You will need to go to the store to supply yourself for lemonade.");
             Console.ReadKey();
@@ -84,17 +74,16 @@ namespace LemonadeStand
             Console.ReadKey();
         }
             
-            private void LemonPurchase(List<double>Product, Inventory backpack, Player player){
+            private void PurchaseLemons(List<double>Product, Inventory backpack, Player player){
             
             int BuyLemons = 0;
-            CheckPlayerInventory(player);
             
             Console.WriteLine($"\nThe price of lemons are ${Product[0]} per unit. How many do you wish to purchase?");
             try { BuyLemons = int.Parse(Console.ReadLine()); }
             catch (FormatException)
             {
                 Console.WriteLine("Error. Must enter an integer.");
-                LemonPurchase(Product, backpack, player);
+                PurchaseLemons(Product, backpack, player);
             }
 
             if (player.Money - (Product[0] * BuyLemons) >=0)
@@ -106,27 +95,26 @@ namespace LemonadeStand
             else if ((player.Money - (Product[0] * BuyLemons)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller number.");
-                LemonPurchase(Product, backpack, player);
+                PurchaseLemons(Product, backpack, player);
             }
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
-                LemonPurchase(Product, backpack, player);
+                PurchaseLemons(Product, backpack, player);
             }
         }
 
-        private void SugarPurchase(List<double> Product, Inventory backpack, Player player)
+        private void PurchaseSugar(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuySugar = 0;
-            CheckPlayerInventory(player);
-
+            
             Console.WriteLine($"\nThe price of sugar is ${Product[1]} per unit. How many do you wish to purchase?");
             try { BuySugar = int.Parse(Console.ReadLine()); }
             catch (FormatException)
             {
                 Console.WriteLine("Error. Must enter an integer.");
-                SugarPurchase(Product, backpack, player);
+                PurchaseSugar(Product, backpack, player);
             }
 
 
@@ -139,27 +127,26 @@ namespace LemonadeStand
             else if ((player.Money - (Product[1] * BuySugar)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                SugarPurchase(Product, backpack, player);
+                PurchaseSugar(Product, backpack, player);
             }
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
-                SugarPurchase(Product, backpack, player);
+                PurchaseSugar(Product, backpack, player);
             }
         }
 
-        private void IcePurchase(List<double> Product, Inventory backpack, Player player)
+        private void PurchaseIce(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuyIce = 0;
-            CheckPlayerInventory(player);
-
+            
             Console.WriteLine($"\nThe price of Ice are ${Product[2]} per unit. How many do you wish to purchase?");
             try { BuyIce = int.Parse(Console.ReadLine()); }
             catch (FormatException)
             {
                 Console.WriteLine("Error. Must enter an integer.");
-                IcePurchase(Product, backpack, player);
+                PurchaseIce(Product, backpack, player);
             }
 
             if (player.Money - (Product[2] * BuyIce) >= 0)
@@ -171,26 +158,25 @@ namespace LemonadeStand
             else if ((player.Money - (Product[2] * BuyIce)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                IcePurchase(Product, backpack, player);
+                PurchaseIce(Product, backpack, player);
             }
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
-                IcePurchase(Product, backpack, player);
+                PurchaseIce(Product, backpack, player);
             }
         }
-        private void CupPurchase(List<double> Product, Inventory backpack, Player player)
+        private void PurchaseCups(List<double> Product, Inventory backpack, Player player)
         {
 
             int BuyCups = 0;
-            CheckPlayerInventory(player);
-
+            
             Console.WriteLine($"\nThe price of cups are ${Product[3]} per unit. How many do you wish to purchase?");
             try { BuyCups = int.Parse(Console.ReadLine()); }
             catch (FormatException)
             {
                 Console.WriteLine("Error. Must enter an integer.");
-                CupPurchase(Product, backpack, player);
+                PurchaseCups(Product, backpack, player);
             }
 
             if (player.Money - (Product[3] * BuyCups) >= 0)
@@ -202,23 +188,30 @@ namespace LemonadeStand
             else if ((player.Money - (Product[3] * BuyCups)) <= 0)
             {
                 Console.WriteLine("Not enough Cash. Please try a smaller amount.");
-                CupPurchase(Product, backpack, player);
+                PurchaseCups(Product, backpack, player);
             }
             else
             {
                 Console.WriteLine("Invalid Input. Please try again.");
-                CupPurchase(Product, backpack, player);
+                PurchaseCups(Product, backpack, player);
             }
         }
 
-        public void StartTransactions(string WeatherPredict, Inventory backpack, Player playerOne)
+        public void StartTransactions(string WeatherPredict, Inventory backpack, Player playerOne, Recipe recipe)
         {
-            Purchase(WeatherPredict);
-            CheckPlayerInventory(playerOne);
-            LemonPurchase(Product, backpack, playerOne);
-            SugarPurchase(Product, backpack, playerOne);
-            IcePurchase(Product, backpack, playerOne);
-            CupPurchase(Product, backpack, playerOne);
+            FindWeather(WeatherPredict);
+            if (playerOne.Money <= 0)
+            {
+                Console.WriteLine("Darn, you don't have any money to buy supplies");
+                backpack.MakeLemonade(playerOne, recipe);
+            }
+            else
+            {
+                PurchaseLemons(Product, backpack, playerOne);
+                PurchaseSugar(Product, backpack, playerOne);
+                PurchaseIce(Product, backpack, playerOne);
+                PurchaseCups(Product, backpack, playerOne);
+            }
         }
 
     }

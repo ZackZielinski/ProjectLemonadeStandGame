@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customers : DisplayProfits
+    public class Customers : DisplayProfits
     {
         Random rnd = new Random();
+        int customernumbers;
+
+        public int CustomerNumbers { get { return customernumbers; } set { customernumbers = value; } }
+
         List<int> customersoftheday = new List<int>();
         
         public List<int> CustomersOfTheDay { get { return customersoftheday; } set { customersoftheday = value; } }
@@ -20,7 +24,7 @@ namespace LemonadeStand
 
         private List<int> ListOfCustomers()
         {
-            int CustomerNumbers = rnd.Next(10);
+            CustomerNumbers = rnd.Next(10);
             List<int> CustomerList = new List<int>();
 
             if (CustomerNumbers != 0){

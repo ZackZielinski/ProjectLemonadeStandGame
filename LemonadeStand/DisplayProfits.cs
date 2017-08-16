@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class DisplayProfits
+    public class DisplayProfits
     {
         public DisplayProfits()
         {
